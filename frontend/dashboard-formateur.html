@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Formateur - Gestion Pédagogique</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Gestion Pédagogique</h1>
+                <p id="user-name">Formateur</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-section="espaces">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <span class="nav-text">Mes espaces</span>
+                </div>
+                <div class="nav-item" data-section="travaux">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    <span class="nav-text">Mes travaux</span>
+                </div>
+                <div class="nav-item" data-section="evaluations">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span class="nav-text">Évaluations</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn btn-secondary" onclick="logout()" style="width: 100%;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span class="nav-text">Déconnexion</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="section-espaces">
+                <div class="header">
+                    <h1>Mes espaces pédagogiques</h1>
+                </div>
+                <div id="espaces-list" class="stats-grid"></div>
+            </div>
+
+            <div id="section-travaux" class="hidden">
+                <div class="header">
+                    <h1>Mes travaux</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="openTravailModal()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Créer un travail
+                        </button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-responsive">
+                        <table id="travaux-table">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Espace</th>
+                                    <th>Type</th>
+                                    <th>Date fin</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="travaux-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-evaluations" class="hidden">
+                <div class="header">
+                    <h1>Livraisons à évaluer</h1>
+                </div>
+                <div class="card">
+                    <div class="table-responsive">
+                        <table id="livraisons-table">
+                            <thead>
+                                <tr>
+                                    <th>Travail</th>
+                                    <th>Étudiant</th>
+                                    <th>Date soumission</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="livraisons-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="bottom-nav-item active" data-section="espaces">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Espaces
+        </div>
+        <div class="bottom-nav-item" data-section="travaux">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            Travaux
+        </div>
+        <div class="bottom-nav-item" data-section="evaluations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Évaluations
+        </div>
+    </div>
+
+    <div id="modal" class="modal"></div>
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="auth.js"></script>
+    <script src="formateur.js"></script>
+    <script>
+        console.log('=== INIT DASHBOARD FORMATEUR ===');
+        
+        if (!checkAuth(['formateur'])) {
+            console.error('Auth failed');
+        } else {
+            console.log('Auth OK');
+            const user = getCurrentUser();
+            console.log('User:', user);
+            document.getElementById('user-name').textContent = user.nom_complet;
+            
+            document.querySelectorAll('.nav-item, .bottom-nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    console.log('Click:', section);
+                    if (section) {
+                        showFormateurSection(section);
+                    }
+                });
+            });
+            
+            loadFormateurEspaces();
+        }
+    </script>
+    </script>
+</body>
+</html>
