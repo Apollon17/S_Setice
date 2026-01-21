@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Directeur - Gestion Pédagogique</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Espace Directeur</h1>
+                <p>Connectez-vous pour accéder à l'administration</p>
+            </div>
+            <form id="login-form" onsubmit="loginDirecteur(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="directeur@ecole.com" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">
+                    Se connecter
+                </button>
+            </form>
+            <div class="login-footer">
+                <a href="login-user.html">Connexion Formateur / Étudiant</a>
+                <br>
+                <a href="index.html" style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; display: inline-block;">← Retour</a>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container" class="toast-container"></div>
+    <script src="auth.js"></script>
+</body>
+</html>
